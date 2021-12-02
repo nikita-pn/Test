@@ -38,10 +38,7 @@ class Admin extends Model
             'description' => $post['description'],
             'text' => $post['text'],
         ];
-        //$this->db->query('INSERT INTO posts VALUES (:id, :name, :description, :text)', $params);
-        $sql = "INSERT INTO posts (name, description, text) VALUES (:name, :description, :text)";
-        $exec = $this->db->prepare($sql);
-        $exec->execute($params);
+        $this->db->query('INSERT INTO posts (name, description, text) VALUES (:name, :description, :text)', $params);
         return $this->db->lastInsertId();
     }
     public function postUploadImage($path, $id){
