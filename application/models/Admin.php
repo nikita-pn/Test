@@ -33,13 +33,12 @@ class Admin extends Model
 
     public function postAdd($post) {
         $params = [
-            'id' => 'null',
             'name' => $post['name'],
             'description' => $post['description'],
             'text' => $post['text'],
         ];
         //$this->db->query('INSERT INTO posts VALUES (:id, :name, :description, :text)', $params);
-        $sql = "INSERT INTO posts (id, name, description, text) VALUES (:id, :name, :description, :text)";
+        $sql = "INSERT INTO posts (name, description, text) VALUES (:name, :description, :text)";
         $exec = $this->db->prepare($sql);
         $exec->execute($params);
         return $this->db->lastInsertId();
